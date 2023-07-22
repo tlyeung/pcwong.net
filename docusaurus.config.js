@@ -10,7 +10,7 @@ const config = {
   baseUrl: '/',
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'pcwong.net', // Usually your GitHub org/user name.
+  organizationName: 'tlyeung', // Usually your GitHub org/user name.
   projectName: 'pcwong.net', // Usually your repo name.
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
