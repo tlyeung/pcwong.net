@@ -17,7 +17,7 @@ function Home() {
         <main className={styles.heroBanner} style={{ height: 'calc(100vh - 60px)' }}>
             <div style={{display: "block" }} >
                 <p>Ciao, my name is</p>
-                <h1 className="text-success">PC WONG.</h1>
+                <h1>PC WONG.</h1>
                 <p>I would like to share some of my best moments in life here.</p>
             </div>
         </main>
