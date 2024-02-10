@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkpcwong_net=self.webpackChunkpcwong_net||[]).push([[394],{2725:e=>{e.exports=JSON.parse('{"title":"Our Wedding","description":"My husband and I were happily married in 2022.","slug":"/category/our-wedding","permalink":"/moments/category/our-wedding","navigation":{"next":{"title":"Film Photos","permalink":"/moments/wedding/film_photos"}}}')}}]);
