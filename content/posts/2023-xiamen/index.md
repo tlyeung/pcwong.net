@@ -5,4 +5,4 @@ date = 2023-06-01T12:00:00
 tags = ["travel"]
 +++
 
-🏝️ Spent a few nice days in Beijing.
+🏝️ Went to Xiamen for a quick day trip. Wonderful day.
