@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}All posts &middot; {{ config.title }}{% endblock title %}
+
+{% block content %}
+<header class="archive-head">
+  <h1>All posts</h1>
+  <p>Newest first.</p>
+</header>
+
+<section aria-label="All posts">
+  {% include "partials/feed.html" %}
+</section>
+{% endblock content %}

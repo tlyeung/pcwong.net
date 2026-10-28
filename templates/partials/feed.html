@@ -1,0 +1,11 @@
+<div class="feed" data-feed>
+  {% for page in paginator.pages %}
+    {% include "partials/card.html" %}
+  {% endfor %}
+</div>
+
+{% if paginator.next %}
+<nav class="load-more" aria-label="Pagination">
+  <a class="btn btn--ghost" href="{{ paginator.next | replace(from=config.base_url, to='/') }}" data-load-more>Load older posts</a>
+</nav>
+{% endif %}

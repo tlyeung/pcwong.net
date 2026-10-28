@@ -1,0 +1,33 @@
+<article class="card">
+  <div class="carousel" data-carousel>
+    <div class="carousel__track" data-track tabindex="0" role="region" aria-label="Photos: {{ page.title }}">
+      {% for asset in page.assets %}
+        {% if asset is matching(pat="(?i)[.](jpe?g|png|webp)$") %}
+          {% set thumb = resize_image(path=asset, width=960, height=960, op="fill") %}
+          <figure class="carousel__slide">
+            <img src="{{ thumb.url }}" width="{{ thumb.width }}" height="{{ thumb.height }}" alt="{{ page.title }}" loading="lazy" decoding="async">
+          </figure>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="card__body">
+    <p class="card__meta"><time datetime="{{ page.date }}">{{ page.date | date(format="%d %B %Y") }}</time></p>
+    <h2 class="card__title"><a href="{{ page.path }}">{{ page.title }}</a></h2>
+
+    <div class="card__text">
+      <div class="card__caption" data-caption>{{ page.content | safe }}</div>
+      <button type="button" class="card__more" data-view-more aria-expanded="false" hidden>View more</button>
+    </div>
+
+    <div class="card__footer">
+      <ul class="tag-list">
+        {% for tag in page.taxonomies.tags %}
+          <li><a class="tag" href="{{ get_taxonomy_url(kind='tags', name=tag) | replace(from=config.base_url, to='/') }}">{{ tag }}</a></li>
+        {% endfor %}
+      </ul>
+      <a class="btn btn--primary" href="{{ page.path }}">View post</a>
+    </div>
+  </div>
+</article>

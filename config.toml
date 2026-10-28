@@ -1,0 +1,23 @@
+base_url = "https://pcwong.net/"
+title = "pcwong.net"
+description = "A minimalist photography portfolio and journal."
+default_language = "en"
+
+# Build a search index from page captions and titles (see static/js/search.js).
+build_search_index = true
+
+# Tag archives are paginated; the "Load older posts" button fetches the next page.
+taxonomies = [
+    { name = "tags", paginate_by = 2 },
+]
+
+[markdown]
+smart_punctuation = true
+
+[search]
+include_title = true
+include_description = true
+include_path = false
+include_content = true
+# Writes search_index.en.json (+ elasticlunr.min.js) to the output directory.
+index_format = "elasticlunr_json"

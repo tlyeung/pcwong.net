@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}{{ term.name }} &middot; {{ config.title }}{% endblock title %}
+
+{% block content %}
+<header class="archive-head">
+  <p class="eyebrow"><a href="/tags/">&larr; All tags</a></p>
+  <h1>{{ term.name }}</h1>
+  <p>{{ term.page_count }} post{% if term.page_count != 1 %}s{% endif %}</p>
+</header>
+
+<section aria-label="Posts tagged {{ term.name }}">
+  {% include "partials/feed.html" %}
+</section>
+{% endblock content %}

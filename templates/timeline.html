@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Timeline &middot; {{ config.title }}{% endblock title %}
+
+{% block content %}
+{% set posts_section = get_section(path="posts/_index.md") %}
+{% set posts = posts_section.pages | sort(attribute="date") | reverse %}
+
+<header class="archive-head">
+  <h1>Timeline</h1>
+</header>
+
+<ol class="timeline">
+  {% for post in posts %}
+    <li class="timeline__item">
+      <time class="timeline__date" datetime="{{ post.date }}">{{ post.date | date(format="%d %b %Y") }}</time>
+      <div class="timeline__body">
+        <h2 class="timeline__title"><a href="{{ post.path }}">{{ post.title }}</a></h2>
+        <p class="timeline__excerpt">{{ post.content | striptags | truncate(length=160) | safe }}</p>
+      </div>
+    </li>
+  {% endfor %}
+</ol>
+{% endblock content %}

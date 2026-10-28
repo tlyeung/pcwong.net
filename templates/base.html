@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="{{ config.default_language }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{{ config.title }}{% endblock title %}</title>
+  <meta name="description" content="{% block description %}{{ config.description }}{% endblock description %}">
+  <link rel="canonical" href="{{ current_url | default(value=config.base_url) }}">
+  <link rel="icon" href="data:,">
+
+  <!-- Applies the saved theme (or the system preference) before first paint: no flash of unstyled content. -->
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var theme = null;
+      try { theme = localStorage.getItem('pcwong-theme'); } catch (e) {}
+      if (theme !== 'light' && theme !== 'dark') {
+        theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      root.setAttribute('data-theme', theme);
+    })();
+  </script>
+
+  <link rel="stylesheet" href="{{ get_url(path='css/style.css', cachebust=true) }}">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="/">{{ config.title }}</a>
+
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/timeline/">Timeline</a>
+        <a href="/tags/">Tags</a>
+      </nav>
+
+      <div class="search" role="search" data-search>
+        <button type="button" class="search__toggle" data-search-toggle aria-label="Search" aria-expanded="false" aria-controls="search-input">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 16l4.5 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <label class="visually-hidden" for="search-input">Search captions and tags</label>
+        <input id="search-input" class="search__input" type="search" placeholder="Search" autocomplete="off"
+               data-index-url="/search_index.en.json">
+        <div class="search__panel" id="search-panel" hidden>
+          <ul class="search__results" id="search-results"></ul>
+        </div>
+      </div>
+
+      <button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch colour theme">
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    {% block content %}{% endblock content %}
+  </main>
+
+  <footer class="site-footer">
+    <nav class="site-footer__nav" aria-label="Footer">
+      <a href="/timeline/">Timeline</a>
+      <a href="/tags/">Tags</a>
+    </nav>
+    <p>{{ config.title }}</p>
+  </footer>
+
+  {# Post index for tag and caption search: every post with its tags. Read by static/js/search.js. #}
+  {% set posts_section = get_section(path="posts/_index.md") %}
+  <script id="post-index" type="application/json">
+[{% for post in posts_section.pages %}{"url": {{ post.path | json_encode() | safe }}, "title": {{ post.title | json_encode() | safe }}, "excerpt": {{ post.content | striptags | truncate(length=140) | json_encode() | safe }}, "tags": [{% for tag in post.taxonomies.tags %}{{ tag | json_encode() | safe }}{% if not loop.last %}, {% endif %}{% endfor %}]}{% if not loop.last %}, {% endif %}{% endfor %}]
+  </script>
+
+  {% if config.build_search_index %}
+  <script src="/elasticlunr.min.js" defer></script>
+  {% endif %}
+  <script src="{{ get_url(path='js/theme.js', cachebust=true) }}" defer></script>
+  <script src="{{ get_url(path='js/search.js', cachebust=true) }}" defer></script>
+  <script src="{{ get_url(path='js/feed.js', cachebust=true) }}" defer></script>
+</body>
+</html>
