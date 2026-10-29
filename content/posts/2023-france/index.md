@@ -1,5 +1,5 @@
 +++
-title = "France reunions"
+title = "France Reunions"
 date = 2023-10-12T12:00:00
 [taxonomies]
 tags = ["travel"]
