@@ -1,5 +1,5 @@
 +++
-title = "🎓 Graduation from Politecnico di Milano"
+title = "🎓 Graduated from Politecnico di Milano"
 date = 2019-10-03T09:56:00
 [taxonomies]
 tags = ["university"]
