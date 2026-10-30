@@ -25,14 +25,14 @@
 
 :root[data-theme="dark"] {
   /* Dark: deep slate blue (#123) with the tlyeung.com text tones and gold accents */
-  --bg: #112233;
+  --bg: #123;
   --surface: #1a2c42;
   --text: #abc;
   --text-muted: #bca;
   --border: #2a3f58;
   --chip: #203750;
-  --accent: #d4af37;
-  --accent-text: #112233;
+  --accent: gold;
+  --accent-text: #123;
   --accent-soft: rgba(212, 175, 55, 0.26);
   --brand: gold;
   --heading: gold;
