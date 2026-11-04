@@ -4,27 +4,32 @@
 
 {% block content %}
 {% set posts_section = get_section(path="posts/_index.md") %}
-{% set posts = posts_section.pages | sort(attribute="date") | reverse %}
 
 <header class="archive-head">
   <h1>Timeline</h1>
 </header>
 
 <ol class="timeline">
-  {% for post in posts %}
-    <li class="timeline__item">
-      <time class="timeline__date" datetime="{{ post.date }}">{{ post.date | date(format="%d %b %Y") }}</time>
-      <div class="timeline__body">
-        <h2 class="timeline__title"><a href="{{ post.path }}">{{ post.title }}</a></h2>
-        {% if post.taxonomies.tags %}
-        <ul class="tag-list">
-          {% for tag in post.taxonomies.tags %}
-            <li><a class="tag" href="{{ get_taxonomy_url(kind='tags', name=tag) | replace(from=config.base_url, to='/') }}">{{ tag }}</a></li>
-          {% endfor %}
-        </ul>
-        {% endif %}
-      </div>
+  {% for year_path in posts_section.subsections | sort | reverse %}
+    {% set year = get_section(path=year_path) %}
+    <li class="timeline__item timeline__year">
+      <a class="timeline__year-link" href="{{ year.path }}">{{ year.title }}</a>
     </li>
+    {% for post in year.pages | sort(attribute="date") | reverse %}
+      <li class="timeline__item">
+        <time class="timeline__date" datetime="{{ post.date }}">{{ post.date | date(format="%d %b %Y") }}</time>
+        <div class="timeline__body">
+          <h2 class="timeline__title"><a href="{{ post.path }}">{{ post.title }}</a></h2>
+          {% if post.taxonomies.tags %}
+          <ul class="tag-list">
+            {% for tag in post.taxonomies.tags %}
+              <li><a class="tag" href="{{ get_taxonomy_url(kind='tags', name=tag) | replace(from=config.base_url, to='/') }}">{{ tag }}</a></li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+        </div>
+      </li>
+    {% endfor %}
   {% endfor %}
 </ol>
 {% endblock content %}

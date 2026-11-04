@@ -13,7 +13,7 @@ The theme choice is saved per address. Use one address (for example `http://127.
 
 ## Add a post
 
-1. Create a page bundle: `content/posts/<slug>/`
+1. Create a page bundle under its year: `content/posts/<year>/<slug>/` (for example `content/posts/2023/beijing/`). The year matches the `date` in `index.md`.
 2. Copy the photos into that folder (`.jpg`, `.png`, or `.webp`). Use numbered names such as `img1.jpg`, `img2.jpg`; they display in that order.
 3. Create `index.md`:
 
@@ -22,7 +22,7 @@ The theme choice is saved per address. Use one address (for example `http://127.
 title = "Title"
 date = 2026-10-28T09:00:00
 [taxonomies]
-tags = ["landscape", "fog"]
+tags = ["travel", "japan"]  # travel posts: a category tag plus a country tag
 +++
 
 The caption is the Markdown body and is the only text. The feed clamps long captions to three lines with a "View more" toggle. The post page shows all of it. The timeline, search, and meta description use the opening text.

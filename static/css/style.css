@@ -193,6 +193,11 @@ main {
   text-decoration: none;
 }
 
+/* Dark only: footer text uses #abc. */
+:root[data-theme="dark"] .site-footer {
+  color: #abc;
+}
+
 /* ---------- Header / navigation ---------- */
 .site-header {
   position: sticky;
@@ -367,6 +372,24 @@ main {
   color: var(--text-muted);
 }
 
+/* Dark only: search field, placeholder, focus frame and result text use #abc. */
+:root[data-theme="dark"] .search,
+:root[data-theme="dark"] .search__input,
+:root[data-theme="dark"] .search__title,
+:root[data-theme="dark"] .search__excerpt,
+:root[data-theme="dark"] .search__empty {
+  color: #abc;
+}
+
+:root[data-theme="dark"] .search__input::placeholder {
+  color: #abc;
+}
+
+:root[data-theme="dark"] .search:focus-within {
+  border-color: #abc;
+  box-shadow: 0 0 0 3px rgba(170, 187, 204, 0.26);
+}
+
 /* Theme toggle */
 .theme-toggle {
   width: 38px;
@@ -405,6 +428,12 @@ main {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
+}
+
+/* Tag cloud on /tags/: same width as the archive heading and timeline. */
+.tag-list--cloud {
+  max-width: var(--measure);
+  margin: 0 auto;
 }
 
 .tag {
@@ -803,6 +832,27 @@ main {
 
 .timeline__item:last-child::after {
   display: none;
+}
+
+/* Year header: no dot, larger label in the date column, sits above its posts. */
+.timeline__year {
+  padding-bottom: 0.5rem;
+}
+
+.timeline__year::before {
+  display: none;
+}
+
+.timeline__year-link {
+  grid-column: 1 / -1;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.timeline__year-link:hover {
+  text-decoration: underline;
 }
 
 .timeline__date {

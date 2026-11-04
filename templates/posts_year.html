@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}{{ section.title }} &middot; {{ config.title }}{% endblock title %}
+
+{% block content %}
+<header class="archive-head">
+  <p class="eyebrow"><a href="/posts/">&larr; All posts</a></p>
+  <h1>{{ section.title }}</h1>
+  <p>{{ section.pages | length }} post{% if section.pages | length != 1 %}s{% endif %}</p>
+</header>
+
+<section aria-label="Posts from {{ section.title }}">
+  {% include "partials/feed.html" %}
+</section>
+{% endblock content %}
