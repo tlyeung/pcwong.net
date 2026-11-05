@@ -1,5 +1,5 @@
 +++
-title = "🧘 Chiangmai Fluid"
+title = "🧘 Chiangmai Unwind"
 date = 2026-07-19T12:00:00
 [taxonomies]
 tags = ["travel", "thailand", "pregnancy"]

@@ -1,5 +1,5 @@
 +++
-title = "🥖 France Reunions"
+title = "🥖 France Rendezvous"
 date = 2023-10-12T12:00:00
 [taxonomies]
 tags = ["travel", "france"]
